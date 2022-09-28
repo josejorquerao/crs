@@ -66,5 +66,6 @@
         Designed by <a href="https://bootstrapmade.com/">Memo</a>
       </div>
     </div>
+    <script src="{{asset('/vendor/aos/aos.js')}}"></script>
     <script src="{{asset('/js/main.js')}}"></script>
 </footer><!-- Fin del Footer -->
