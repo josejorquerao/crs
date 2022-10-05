@@ -1,15 +1,15 @@
+
 <!-- ======= El lugar ======= -->
+
 <section id="about" class="about">
     <div class="container">
       <div class="row no-gutters">
         <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-up">
-
           <div class="container">
             <h3>Descripcion de la empresa</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
             </p>
-            <img src="'/img/Background_welcome.jpg" alt="">
           </div>
         </div>
         <div class="col-xl-7 d-flex align-items-stretch">

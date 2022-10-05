@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('detail', function (Blueprint $table) {
             $table->id();
             $table->integer('total');
+            $table->unsignedBigInteger('cottage_id')->nullable();
+            $table->foreign('cottage_id')->references('id')->on('cottage')->onDelete('set null');
         });
     }
 

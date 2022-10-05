@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('cottage', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 45);
             $table->string('description', 250);
             $table->string('beedrooms');
             $table->string('toilets');

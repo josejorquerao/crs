@@ -1,15 +1,21 @@
-<header id="header" class="fixed-top header-transparent">
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
       <div class="logo">
-        <h1 class="text-light"><a href="#"><span>Altos del Chucao</span></a></h1>
+        <h1 class="text-light"><a href="{{ route('index') }}"><span>Altos del Chucao</span></a></h1>
       </div>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#welcome">Inicio</a></li>
-          <li><a class="nav-link scrollto" href="#about">El lugar</a></li>
-          <li><a class="nav-link scrollto" href="#services">Reservar</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+          @guest
+          @if (Route::has('dashboard'))
+          <li><a class="nav-link scrollto active" href="{{ route('index') }}">Resumen</a></li>
+          @endif
+          @else
+          <li><a class="nav-link scrollto active" href="{{ route('index') }}">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('index') }}">El lugar</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('index') }}">Reservar</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('index') }}">Contacto</a></li>
         </ul>
+        @endguest
         
          <!-- Autenticacion DE USUARIO -->
           @guest
@@ -37,14 +43,6 @@
                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Configuración</a></li>
               </ul>
             </div>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-             <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-               {{ __('Logout') }}
-             </a>
-             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-               @csrf
-             </form>
-            </div>
             <!-- Salir -->
             <div class="navbar-nav" aria-labelledby="navbarDropdown">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('x') }}
@@ -56,7 +54,6 @@
             <!-- Fin Salir -->
           @endguest
         <!-- Fin Autenticacion -->
-        
       </nav>
     </div>
   </header>

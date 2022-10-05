@@ -13,7 +13,7 @@
           <h4 class="title"><a>Cabaña 1</a></h4>
           <img src="{{asset('/img/cabaña1.jpg')}}" class="img-fluid" alt="">
           <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-          <a class="btn btn-success"href="{{ url('/cabaña1') }}">Reservar</a>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cottageBooking">Reservar</button>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
           <h4 class="title"><a>Cabaña 2</a></h4>
           <img src="{{asset('/img/cabaña2.jpg')}}" class="img-fluid" alt="">
           <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-          <a class="btn btn-success"href="">Reservar</a>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cottageBooking">Reservar</button>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
           <h4 class="title"><a>Cabaña 3</a></h4>
           <img src="{{asset('/img/cabaña3.jpg')}}" class="img-fluid" alt="">
           <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-          <a class="btn btn-success"href="">Reservar</a>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cottageBooking">Reservar</button>
         </div>
       </div>
 
@@ -43,9 +43,10 @@
           <h4 class="title"><a>Cabaña 4</a></h4>
           <img src="{{asset('/img/cabaña4.jpg')}}" class="img-fluid" alt="">
           <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-          <a class="btn btn-success"href="">Reservar</a>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cottageBooking">Reservar</button>
         </div>
       </div>
     </div>
   </div>
 </section><!-- Fin Seccion de Reserva -->
+@include('modals.cottage-booking-form')

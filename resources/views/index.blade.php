@@ -1,1 +1,5 @@
-@extends('layouts.template')
+@extends('layouts.app')
+@include('partials.welcome')
+@include('partials.about')
+@include('partials.reservation')
+@include('partials.contact')

@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reserve', function (Blueprint $table) {
+        Schema::create('detail_service', function (Blueprint $table) {
             $table->id();
-            $table->date('ingress');
-            $table->date('egress');
-            $table->string('status');
-            $table->unsignedBigInteger('detail_id')->nullable();
-            $table->unsignedBigInteger('users_id')->nullable();
+            $table->unsignedBigInteger('detail_id');
+            $table->unsignedBigInteger('service_id');
             $table->foreign('detail_id')->references('id')->on('detail')->onDelete('cascade');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserve');
+        Schema::dropIfExists('detail_service');
     }
 };

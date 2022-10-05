@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('phone');
             $table->string('email');
             $table->string('city');
-            $table->string('adress');
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
