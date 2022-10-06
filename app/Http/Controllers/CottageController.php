@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Cottage;
 use Illuminate\Http\Request;
 
 class CottageController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +13,8 @@ class CottageController extends Controller
      */
     public function index()
     {
-        //
+        $cottages=Cottage::all();
+        return view('cottages',['cabanas'=>$cottages]);
     }
 
     /**
@@ -34,15 +35,15 @@ class CottageController extends Controller
      */
     public function store(Request $request)
     {
-        /*$cottage= new Cottage();
+        $cottage= new Cottage();
         $cottage->name = $request->name;
         $cottage->description = $request->description;
         $cottage->beedrooms = $request->beedrooms;
         $cottage->toilets = $request->toilets;
         $cottage->price = $request->price;
-
-        return $cottage;*/
-        return view('cottage.create');
+        $cottage->timestamps = false;
+        $cottage->save();
+        return view('cottages', compact('cottage'));
     }
 
     /**

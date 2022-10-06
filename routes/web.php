@@ -29,10 +29,10 @@ Route::get('/dashboard/bookings', function () {return view('bookings');})->name(
 Route::get('/dashboard/profile', function () {return view('profile');})->name('profile');
 
 /* A Lista de Cabañas */
-Route::get('/dashboard/cottages', function () {return view('cottages');})->name('cottages');
+Route::get('/dashboard/cottages', [App\Http\Controllers\CottageController::class, 'index'])->name('cottages');
 
 /*¨Crear Cabaña */
-Route::post('/dashboard/cottages/create', [App\Http\Controllers\CottageController::class, 'cottage.create'])->name('cottage.create');
+Route::post('/dashboard/cottages/create', [App\Http\Controllers\CottageController::class, 'store'])->name('cottage.create');
 
 /* A Lista de Servicios */
 Route::get('/dashboard/services', function () {return view('services');})->name('services');

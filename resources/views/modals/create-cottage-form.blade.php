@@ -8,7 +8,8 @@
             </div>
             <div class="modal-body" >     
             <div class="col-lg-20">
-                <form action="{{('cottage.create')}}" method:="post">
+                <form action="{{ route('cottage.create') }}" method="post">
+                  @csrf
                   <div class="form-group mt-3">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
                   </div>
@@ -26,9 +27,7 @@
 
                     <div class="col-md-6 form-group mt-3">
                         <input type="text" class="form-control" name="price" id="price" placeholder="price" required>
-                    </div>
-    
-                  
+                    </div>                 
                   <div class="text-center mt-3"><button type="submit" class="btn btn-success btn-primary">Crear</button></div>
                 </form>
             </div>

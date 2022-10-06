@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cottage extends Model
 {
     use HasFactory;
+    protected $table="cottage";
 
     //relacion uno a muchos
     public function details(){
