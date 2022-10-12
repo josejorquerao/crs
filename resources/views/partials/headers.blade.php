@@ -48,7 +48,6 @@
             </ul>
           @endguest
         <!-- Fin Autenticacion -->
-        
       </nav>
     </div>
   </header>

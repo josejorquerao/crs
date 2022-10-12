@@ -1,4 +1,7 @@
 @extends('layouts.layout')
+@section('style')
+    <link href="{{asset('/css/style.css')}}" rel="stylesheet">   
+@endsection
  <br>
  <br>
  <br>

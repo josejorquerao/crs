@@ -1,4 +1,4 @@
-<!-- ======= Seccion de contacto ======= -->
+
 <section id="contact" class="contact section-bg">
     <div class="container" data-aos="fade-up">
 
@@ -68,5 +68,5 @@
       </div>
 
     </div>
-</section><!-- Fin Seccion de contacto -->
+</section>
 

@@ -1,6 +1,4 @@
 
-<!-- ======= El lugar ======= -->
-
 <section id="about" class="about">
     <div class="container">
       <div class="row no-gutters">
@@ -41,4 +39,4 @@
       </div>
     </div>
   </section>
-  <!-- Fin El lugar -->
+

@@ -1,4 +1,4 @@
-<!-- ======= Seccion de Reserva ======= -->
+
 <section id="reserve" class="contact section-bg about">
     <div class="container no-gutters" data-aos="fade-up">
         <div class="content" data-aos="fade-up">

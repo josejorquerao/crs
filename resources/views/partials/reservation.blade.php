@@ -1,4 +1,3 @@
-<!-- ======= Seccion de Reserva ======= -->
 <section id="services" class="services">
   <div class="container">
     <div class="section-title" data-aos="fade-in" data-aos-delay="100">
