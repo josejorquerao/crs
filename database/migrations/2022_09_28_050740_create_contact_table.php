@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('contact', function (Blueprint $table) {
             $table->id();
-            $table->integer('phone');
-            $table->string('email');
-            $table->string('city');
-            $table->unsignedBigInteger('users_id')->nullable();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('set null');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->nullable();;
+            $table->foreign('guest_id')->references('id')->on('guest')->onDelete('set null')->nullable();;
         });
     }
-
     /**
      * Reverse the migrations.
      *

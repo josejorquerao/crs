@@ -1,34 +1,31 @@
 <!-- ======= Sidebar ======= -->
-  <div id="sidebar" class="sidebar">
+<div id="sidebar" class="sidebar">
   <br><br>
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('dashboard') }}">
-          <i class="bi bi-grid"></i>
-          <span>Resumen</span>
-        </a>
-      </li>
-      <li class="nav-heading">Turista</li>
-      <li class="nav-item">
-       <a class="nav-link collapsed" href="{{ route('profile') }}"><i class="bi bi-envelope"></i><span>Perfil</span></a></li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('dashboard') }}"><span>Resumen</span></a>
+    </li>
 
-      <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('bookings') }}"><i class="bi bi-envelope"></i><span>Mis Reservas</span></a></li>
-      </li>
-      <li class="nav-heading">Administrador</li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('cottages') }}">
-          <i class="bi bi-envelope"></i>
-          <span>Cabañas</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('services') }}">
-          <i class="bi bi-card-list"></i>
-          <span>Servicios</span>
-        </a>
-      </li>
-    </ul>
+    <li class="nav-heading">Turista</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('profile') }}"><i class="bi bi-1-square"></i><span>Perfil</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('bookings') }}"><span>Mis Reservas</span></a>
+    </li>
+    </li>
+
+    <li class="nav-heading">Administrador</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('cottages') }}"><span>Cabañas</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('services') }}"><span>Servicios</span></a>
+    </li>
+  </ul>
 </div>
+
 <!-- End Sidebar-->

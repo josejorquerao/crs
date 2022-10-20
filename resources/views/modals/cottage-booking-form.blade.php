@@ -8,7 +8,8 @@
       </div>
       <div class="modal-body" data-aos="fade-up">
         <div class="col-lg-20">
-          <form action="" method="post" role="form" class="php-email-form">
+          <form action="{{ route('cottage.booking') }}" method="post">
+            @csrf
             <div class="row">
               <div class="col-md-6 form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
@@ -33,13 +34,13 @@
             </div>
             <div class="row ">
               <div class="col-md-6 form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Llegada" required>
+                <input type="text" class="form-control" name="ingress" id="ingress" placeholder="Llegada" required>
               </div>
               <div class="col-md-6 form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Salida" required>
+                <input type="text" class="form-control" name="egress" id="egress" placeholder="Salida" required>
               </div>
             </div>
-            <div class="text-center mt-3"><button type="button" class="btn btn-success btn-primary">Continuar</button></div>
+            <div class="text-center mt-3"><button type="submit" class="btn btn-success btn-primary">Continuar</button></div>
           </form>
         </div>
       </div>

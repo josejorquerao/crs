@@ -1,0 +1,128 @@
+/* Ajax Setup CSRF token */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+/* Verificar Usuario */
+const verificarUser = async () => 
+{
+
+    $('#addUser').prop('disabled', true)
+    let sw = true
+
+        let array = ['name', 'lastname', 'city', 'email', 'password', 'password-confirm']
+
+        var pre = array.map(async function (datos) {
+            var dato = $('#' + datos)
+            var datoValue = dato.val()
+            if (datoValue.length === 0) {
+                dato.css('border-color', 'red')
+                sw = false
+            } else {
+                switch (datos) {
+                    case 'password-confirm':
+                        var valpass = checkPass($('#password'), $('#password-confirm'))
+                        if (valpass == false) { sw = false }
+                        break
+                    case 'email':
+                        var valEmail = await checkEmail($('#email'), $('#error-email'))
+                        if (valEmail == false) { sw = false }
+                        break
+                    default:
+                        dato.css('border-color', '')
+                }
+            }
+
+        })
+        const resolved = await Promise.all(pre)
+
+        //verificar pass mayor a 8 caracteres
+
+        if (sw) {
+            agregarUser()
+        }
+
+    $('#addUser').prop('disabled', false)
+
+}
+
+
+/* Verificar Contraseña */
+function checkPass(pass, passConfirm) 
+{
+
+    if (pass.val() == passConfirm.val()) {
+        pass.css('border-color', '')
+        passConfirm.css('border-color', '')
+        $('#error-password').text('')
+        return true
+    } else {
+        pass.css('border-color', 'red')
+        passConfirm.css('border-color', 'red')
+        $('#error-password').text('No coinciden')
+        return false
+    }
+
+}
+
+/* Verificar email*/
+var checkEmail = async (email, label) => {
+
+    if (/^\w+([.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail|msn).(?:|com|es|cl)+$/.test(email.val())) 
+    {
+
+        var res = await $.ajax({
+            type: 'GET',
+            url: 'validateEmail',
+            data: { email: email.val() }
+        })
+        if (res == 'true') {
+            email.css('border-color', '');
+            label.text('');
+            return true
+        } else {
+            email.css('border-color', 'red')
+            label.text('Email ya registrado')
+            return false
+        }
+    } else {
+        email.css('border-color', 'red')
+        label.text('Formato inválido')
+        return false
+    }
+
+}
+
+/*REGISTRAR*/
+const agregarUser = async () => 
+{
+
+    $('#addUser').prop('disabled', true)
+    let token = $("input[name=_token]").val()
+    let form = $('#formRegister')
+    let route = 'userStore'
+    await $.ajax({
+        type: 'post',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        url: route,
+        data: form.serialize(),
+        success: function (data) {
+            if (data.success == 'true') {
+                Swal.fire(
+                    'Bienvenido a WeMathing!',
+                    'Serás redirigido al inicio para que ingreses con tu cuenta',
+                    'success'
+                )
+                setTimeout(function () {
+                    $(location).attr('href', '/')
+                }, 3500)
+            } else {
+                console.log('error');
+            }
+        }
+    })
+
+}

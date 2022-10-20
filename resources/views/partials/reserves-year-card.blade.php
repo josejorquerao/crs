@@ -1,5 +1,4 @@
-
-<div class="row">
+<div class="col-xl-12">
   <h5 class="card-title">Reportes de Reservas:</h5>
   <div class="col-lg-8">
     <div class="row">

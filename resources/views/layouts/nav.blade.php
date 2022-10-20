@@ -1,5 +1,10 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('partials.head')
-@include('partials.static-header')
-</html
+
+<body>
+    @include('partials.static-header')
+</body>
+@include('partials.dashboard-footer')
+
+</html>

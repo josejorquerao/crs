@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('beedrooms');
             $table->string('toilets');
             $table->string('price');
+            $table->string('image')->nullable;
         });
     }
 

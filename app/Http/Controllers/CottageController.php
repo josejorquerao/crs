@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Cottage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CottageController extends Controller
 {
@@ -20,6 +21,13 @@ class CottageController extends Controller
         $cottage->toilets = $request->toilets;
         $cottage->price = $request->price;
         $cottage->timestamps = false;
+        if($request->hasFile("image")){
+            $image = $request->file("image");
+            $nombreImagen = Str::slug($request->image).".".$image->guessExtension();
+            $ruta = public_path("img");
+            $image->move($ruta,$nombreImagen);
+            $cottage->image = $nombreImagen;
+        }
         $cottage->save();
         $cabanas=Cottage::all();
         return view('cottages', compact('cabanas'));

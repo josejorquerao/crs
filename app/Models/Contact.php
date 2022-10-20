@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+    protected $table="contact";
     public function user(){
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
  }
 }

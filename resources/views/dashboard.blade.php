@@ -2,20 +2,14 @@
 <br>
 <!DOCTYPE html>
 <html lang="en">
- <body>
-   <div id="resumen" class="main">
-     @include('partials.sidebar')
-     <section class="section dashboard">
-     <div class="pagetitle">
-     <h1>Ajustes e Informacíon</h1>
-       <nav>
-         <ol class="breadcrumb">
-           <li class="breadcrumb-item active">Entrando como: {{ Auth::user()->name }}</li>
-         </ol>
-       </nav>
-       </div>
-       @yield('contenido')
-     </section>
-</div>
- </body>
+
+<body>
+  <div id="resumen" class="main">
+    @include('partials.sidebar')
+    @yield('contenido')
+    @include('partials.dashboard-footer')
+  </div>
+
+</body>
+
 </html>

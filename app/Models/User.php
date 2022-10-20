@@ -20,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
         'password',
     ];
@@ -47,9 +48,9 @@ class User extends Authenticatable
     public function reserves(){
         return $this->belongsTo('App\Models\Reserve');
     }
-    
+
     // Uno a uno Inversa
     public function contact(){
-        return $this->belongsTo('App\Models\Contact');
+        return $this->hasOne('App\Models\Contact');
     }
 }

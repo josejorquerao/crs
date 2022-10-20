@@ -18,14 +18,14 @@
                 <input type="text" class="form-control" name="description" id="description" placeholder="Description" required>
               </div>
               <div class="form-group mt-3 ">
-                <input type="text" class="form-control" name="beedrooms" id="beedrooms" placeholder="Baños" required>
+                <input type="text" class="form-control" name="beedrooms" id="beedrooms" placeholder="Dormitorios" required>
               </div>
               <div class="col-md-6 form-group mt-3">
-                <input type="text" class="form-control" name="toilets" id="toilets" placeholder="toilets" required>
+                <input type="text" class="form-control" name="toilets" id="toilets" placeholder="Baños" required>
               </div>
 
               <div class="col-md-6 form-group mt-3">
-                <input type="text" class="form-control" name="price" id="price" placeholder="price" required>
+                <input type="text" class="form-control" name="price" id="price" placeholder="Precio" required>
               </div>
               <div class="text-center btn-sm mt-3 ">
                 <button type="submit" class="btn btn-success btn-primary float-end">Crear</button>

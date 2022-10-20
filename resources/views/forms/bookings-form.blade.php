@@ -1,25 +1,11 @@
-<div class="card mb-3" style="max-width: 1000px; margin:auto;">
-  <div class="row g-0">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Reserva 1</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="card mb-3" style="max-width: 1000px; margin:auto;">
-  <div class="row g-0">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Reserva 2</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="col-12 " style="max-width:1000px; margin:auto;">
+  <div class="card mb-3 ms-3">
+    <div class="row g-0">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-danger btn-sm float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="">Eliminar</button>
+        <button type="button" class="btn btn-success btn-sm float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="">Editar</button>
+        <h5 class="card-title ps-3 pb-3">Titulo</h5>
+        <p class="card-text ps-3 pb-3">Descripciion</p>
       </div>
     </div>
   </div>

@@ -1,5 +1,14 @@
 @extends('dashboard')
-<br>
 @section('contenido')
-@include('forms.profile-form')
+<section class="section dashboard">
+    <div class="pagetitle">
+        <h1>Ajustes del Perfil</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">/ dashboard / profile</li>
+            </ol>
+        </nav>
+    </div>
+    @include('forms.profile-form')
+</section>
 @endsection
