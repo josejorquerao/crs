@@ -9,6 +9,6 @@
             </ol>
         </nav>
     </div>
-    @include('forms.bookings-form')
+    @include('dashboard.bookings-dashboard')
 </section>
 @endsection

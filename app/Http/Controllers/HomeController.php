@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cottage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,8 +27,11 @@ class HomeController extends Controller
     {
         return view('index');
     }
-    public function show(){
-        $cottages=Cottage::all();
-        return view('index', compact('cottages'));
+    public function show()
+    {
+        $date = Carbon::now();
+        $date = $date->format('Y-m-d');
+        $cottages = Cottage::all();
+        return view('index', compact('cottages','date'));
     }
 }

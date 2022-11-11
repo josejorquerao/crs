@@ -9,6 +9,7 @@ class Cottage extends Model
 {
     use HasFactory;
     protected $table="cottage";
+    public $timestamps = false;
 
     //relacion uno a muchos
     public function details(){

@@ -1,7 +1,4 @@
 @extends('layouts.nav')
-<br>
-<!DOCTYPE html>
-<html lang="en">
 
 <body>
   <div id="resumen" class="main">
@@ -10,5 +7,3 @@
   </div>
 
 </body>
-
-</html>

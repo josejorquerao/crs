@@ -5,6 +5,7 @@
 <br>
 <br>
 <br>
+
 <div class="container">
 
     <div class="row justify-content-center">
@@ -81,8 +82,8 @@
 </div>
 <br>
 <br>
-@push('script')
-<script src="{{asset('/js/register.js')}}"></script>
 
-@endpush
+
 @endsection
+
+<script src="{{asset('/js/register.js')}}"></script>

@@ -1,5 +1,6 @@
-<header id="header" class="fixed-top">
+<header id="staticHeader" class="fixed-top">
   <div class="container d-flex align-items-center justify-content-between">
+    <i id="rayitas" class="bi bi-list toggle-sidebar-btn" style="font-size: 32px;cursor: pointer;color: #FFFFFF;"></i>
     <div class="logo">
       <h1 class="text-light"><a href="{{ route('index') }}"><span>Altos del Chucao</span></a></h1>
     </div>
@@ -16,7 +17,6 @@
         <li><a class="nav-link scrollto" href="{{ route('index') }}">Contacto</a></li>
         @endguest
       </ul>
-
       <!-- Autenticacion DE USUARIO -->
       @guest
       @if (Route::has('login'))
@@ -43,7 +43,7 @@
         </ul>
       </div>
       <div class="navbar-nav" aria-labelledby="navbarDropdown">
-        <a class="nav-link badge bg-success text-wrap" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a>
+        <button id="botonLogout" class="nav-link btn bt-success btn-sm badge text-wrap" href="{{ route('logout') }} " onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket" style="font-size: 2em;"></i></button>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
         </form>
@@ -52,3 +52,4 @@
     </nav>
   </div>
 </header>
+@include('partials.sidebar')

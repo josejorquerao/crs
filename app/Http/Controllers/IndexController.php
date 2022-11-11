@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cottage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -46,8 +47,10 @@ class IndexController extends Controller
      */
     public function show()
     {
+        $date=Carbon::now();
+        $date= $date->format('Y-m-d');
         $cottages=Cottage::all();
-        return view('index', compact('cottages'));
+        return view('index', compact('cottages','date'));
     }
 
     /**
