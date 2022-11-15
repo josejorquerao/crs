@@ -41,6 +41,7 @@ Route::get('/cabaña2', function () { return view('reserves'); });
 /* A Pasarela de Pago   */
 Route::post('/detail/{cottage}', [DetailController::class, 'show'])->name('detail');
 
+Route::group(['middleware' => 'auth'], function () {
 /* RUTAS DEL DASHBOARD */
 /*------------------------------------------------------------------------------------------------------------------------*/
 /* RUTAS DE REPORTES */
@@ -108,3 +109,4 @@ Route::delete('/dashboard/service/{service}', [ServiceController::class, 'destro
 Route::put('/dashboard/service/{service}', [ServiceController::class, 'update'])->name('service.update');
 /*------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------*/
+});

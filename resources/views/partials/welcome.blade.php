@@ -4,6 +4,8 @@
       <h2>Bosque Nativo y Paz</h2>
       <a href="#services" id="boton" class="text-center btn btn-sl"><strong>RESERVAR</strong></a>
     </div>
+    @include('partials.login')
+    @include('partials.register')
 </section>
 
   

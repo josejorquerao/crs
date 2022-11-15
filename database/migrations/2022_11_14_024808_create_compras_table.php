@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guest', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('lastname');
+            $table->string('session_id');
+            $table->float('total',9,2);
+            $table->tinyInteger('status')->coment('1: pendiente. 2: aprobada.')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guest');
+        Schema::dropIfExists('compras');
     }
 };
