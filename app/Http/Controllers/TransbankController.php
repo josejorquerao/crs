@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compra;
 use Illuminate\Http\Request;
 use Transbank\Webpay\WebpayPlus;
-use Transbank\Webpay\Transaction;
-use app\Models\Compra;
+use Transbank\Webpay\WebpayPlus\Transaction;
 
 class TransbankController extends Controller
 {
@@ -38,7 +38,15 @@ class TransbankController extends Controller
         return $url;
     }
     public function peticionCompra(Request $request){
-        return $request;
+        $status=(new Transaction)->commit($request->get('token_ws'));
+        $compra = Compra::where('id',$status->buyOrder)->first();
+        if($status->isApproved()){
+            $compra->status=2;
+            $compra->update();
+            return redirect(env('http://127.0.0.1:8000')."?compra_id={$compra->id}");
+        }else{
+            return redirect(env('http://127.0.0.1:8000')."?compra_id={$compra->id}");
+        }
     }
     public function testing(Request $request){
         return 'HOLA MUNDO';

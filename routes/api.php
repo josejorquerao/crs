@@ -19,4 +19,5 @@ use App\Http\Controllers\TransbankController;
 //     return $request->user();
 // });
 Route::post("/compra",[TransbankController::class,'start']);
-Route::post("/compra_ok",[TransbankController::class,'peticionCompra'])->name('confirmar_ok');
+Route::post("/test",[TransbankController::class,'testing']);
+Route::ANY("/compra_ok",[TransbankController::class,'peticionCompra'])->name('confirmar_ok');
