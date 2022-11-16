@@ -69,6 +69,7 @@
                 <input type="text" value="{{$request->phone}}" class="form-control" name="phone" id="phone" placeholder="Telefono ej.(+569xxxxxxxx)" required readonly>
               </div>
             </form>
+            <form method='POST' action="{{route('start_buy',$request)}}">
           </div>
           <div class="card-footer text-muted">
           </div>
@@ -85,7 +86,8 @@
         <div class="card">
           <div class="card-body">
             <div class="col">
-              <h5 class="ps-3 pb-3 title text-muted mt-3"><strong> {{$request->cottageName}}</strong></h5>
+              <h5 class="ps-3 pb-3 title text-muted mt-3" class="form-control" name='nameHouse'>
+                <strong class="form_control" name="nameHome" id="home">  {{$request->cottageName}}</strong></h5>
             </div>
             <div class="col">
               <img src="{{$request->cottageImg}}" class="img-fluid mb-3 border" alt="">
@@ -107,7 +109,7 @@
               @endforeach
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1 border-bottom mb-3"></div>
               <div class="row form-group">
-                <div class="col-6"><span data-bind="">Total Días ({{$dias}})</span></div>
+                <div class="col-6"><span data-bind="" class="form-control" name='totaldias'>Total Días ({{$dias}})</span></div>
                 <div class="col-6 text-right"><span>&nbsp;${{$preciototal}}</span></div>
               </div>
               <div class="row form-group">
@@ -119,12 +121,14 @@
               <div class="row form-group">
                 <div class="col-6"><span data-bind="">Total (CLP)</span></div>
                 <div class="col-6 text-right"><span>&nbsp;$</span><span id="totalSpan">{{$preciototal}}</span></div>
-                <input type="hidden" value="{{$preciototal}}" id="total">
+                <input type="hidden" class="form-control" value="{{$preciototal}}" id="total" name='totalmonto'>
               </div>
+              
               <div class=" col-md-12 form-group mt-3">
-                <button id="boton" type="submit" class="btn btn-success btn-primary col-md-12"><strong><span>PAGAR $</span><span id="botonTotal">{{$preciototal}}</span></strong></button>
+                <button id="buttonPay" type="submit" class="btn btn-success btn-primary col-md-12"><strong><span>PAGAR $</span>
+                <span id="botonTotal" name="total">{{$preciototal}}</span></strong></button>
               </div>
-
+              </form>
             </div>
           </div>
         </div>
@@ -135,3 +139,5 @@
   </div>
 </body>
 <script src="{{asset('/js/precio.js')}}"></script>
+<script>
+</script>

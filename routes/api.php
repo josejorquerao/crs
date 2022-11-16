@@ -18,6 +18,6 @@ use App\Http\Controllers\TransbankController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::post("/compra",[TransbankController::class,'start']);
+Route::post("/compra",[TransbankController::class,'start'])->name('start_buy');
 Route::post("/test",[TransbankController::class,'testing']);
 Route::ANY("/compra_ok",[TransbankController::class,'peticionCompra'])->name('confirmar_ok');

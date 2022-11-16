@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-@extends('layouts.app')
+@include('partials.head')
 <body>
+@include('partials.header')
     @include('partials.welcome')
     @include('partials.about')
     @include('partials.carousel')
@@ -10,4 +11,6 @@
     @include('partials.login')
     @include('partials.register')
     </seccion>
+    
+    @include('partials.footer')
 </body>

@@ -8,6 +8,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\TransbankController;
 use App\Models\Detail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,7 @@ Route::get('/cabaña2', function () { return view('reserves'); });
 
 /* A Pasarela de Pago   */
 Route::post('/detail/{cottage}', [DetailController::class, 'show'])->name('detail');
-
+Route::get("/compra/status",[TransbankController::class,'showStatus']);
 Route::group(['middleware' => 'auth'], function () {
 /* RUTAS DEL DASHBOARD */
 /*------------------------------------------------------------------------------------------------------------------------*/

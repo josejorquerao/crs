@@ -9,6 +9,7 @@ class Detail extends Model
 {
     // Muchos a muchos
     use HasFactory;
+    protected $table="detail";
     public function services(){
         return $this->belongsToMany('App\Models\Service');
     }

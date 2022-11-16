@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\Cottage;
+use app\Models\Booking;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 use Transbank\Webpay\WebpayPlus;
 use Transbank\Webpay\WebpayPlus\Transaction;
@@ -21,11 +24,13 @@ class TransbankController extends Controller
     }
     public function start(Request $request){
         $compra=new Compra();
-        $compra->session_id='123123';
-        $compra->total=10000;
+        //se debe incluir despues de q se corriguen las tablas
+       $id=self::setData($request);  
+        $compra->session_id=$id;
+        $compra->total=$request->totalmonto;
         $compra->save();
         $url=self::start_transaction($compra);
-        return $url;
+        return redirect($url);
     }
     public function start_transaction($compra){
         $transaction=(new Transaction)->create(
@@ -38,17 +43,50 @@ class TransbankController extends Controller
         return $url;
     }
     public function peticionCompra(Request $request){
-        $status=(new Transaction)->commit($request->get('token_ws'));
+        $token = $request->token_ws;
+        $transaction = new Transaction();
+        $status = $transaction->commit(
+            $token,
+            );
         $compra = Compra::where('id',$status->buyOrder)->first();
+        $transaction->status($request->token_ws);
+        $estado=0;
         if($status->isApproved()){
+            //dd($status);
             $compra->status=2;
             $compra->update();
-            return redirect(env('http://127.0.0.1:8000')."?compra_id={$compra->id}");
+            $estado=1;
+           // $booking=Booking::max('id');
+           // $booking->status="Pago Aceptado";
+           //$booking->update();
+           //retorna la rutaaas
+            return view('transbank.response' ,compact('estado'));
         }else{
-            return redirect(env('http://127.0.0.1:8000')."?compra_id={$compra->id}");
+            return view('transbank.response',compact('estado'));
         }
     }
     public function testing(Request $request){
         return 'HOLA MUNDO';
+    }
+    //funcion para guardar los datos correspondientes segun la transaccion
+    public function SetData(Request $request){
+        $detail=new Detail();
+        $detail->cottage_id=$request->cottageId;
+        $detail->total=$request->totalmonto;
+        $detail->timestamps = false;
+        $detail->save();
+        $id=Detail::max('id');
+        // $booking=new Booking();
+        // $booking->ingress=$request->ingress;
+        // $booking->detail_id=$id;
+        // $booking->egress=$request->egress;
+        // $booking->user_id=0;
+        // $booking->guest_id=0;
+        // $booking->status="Pendiente Pago";
+        // $booking->save();
+        return $id;
+    }
+    public function showStatus(){
+        return view('transbank.response');
     }
 }
