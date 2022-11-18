@@ -3,7 +3,7 @@
   
   <div class="container d-flex align-items-center justify-content-between">
     <div class="logo">
-      <h1 class="text-light"><a href="{{ route('index') }}"><span>Altos del Chucao</span></a></h1>
+      <h1 class="text-light"><a href="{{ route('dashboard') }}"><span>Altos del Chucao</span></a></h1>
     </div>
 
 

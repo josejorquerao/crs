@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('contact', function (Blueprint $table) {
+            $table->engine="InnoDb";
             $table->id();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

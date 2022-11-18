@@ -4,11 +4,12 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Profilecontroller;
 use App\Http\Controllers\CottageController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\TransbankController;
+use App\Http\Controllers\TransbankController;
+use App\Http\Controllers\AdminController;
 use App\Models\Detail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,12 @@ Route::group(['middleware' => 'auth'], function () {
 /* RUTAS DE REPORTES */
 
 /* Al Dashboard   */
-Route::get('/dashboard', function () {return view('resume');})->name('dashboard');
+Route::get('/dashboard/resumen', [AdminController::class, 'index'])->name('resumen');
+Route::resource('reservations', ReservationController::class);
+Route::get('/client/index', [ ReservationController::class, 'clients'])->name('admin.index');
+Route::post('/client/cancelar/{id}', [ ReservationController::class, 'cancelar'])->name('admin.cancelar');
+Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard');
+
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -59,7 +65,6 @@ Route::get('/dashboard', function () {return view('resume');})->name('dashboard'
 Route::get('/dashboard/bookings', function () {return view('bookings');})->name('bookings');
 /*------------------------------------------------------------------------------------------------------------------------*/
 
-Route::post('/booking', [BookingController::class, 'create'])->name('cottage.booking');
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------------------------------------------------*/

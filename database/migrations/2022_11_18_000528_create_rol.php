@@ -3,7 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 return new class extends Migration
 {
     /**
@@ -13,14 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service', function (Blueprint $table) {
-            $table->engine="InnoDb";
-            $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->string('image')->nullable;
-        });
+       $role1=Role::create(['name'=>'admin']);
+       $role2=Role::create(['name'=>'turista']);
+       $user=User::find(1);
+       $user->assignRole($role1);
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service');
+        Schema::dropIfExists('rol');
     }
 };

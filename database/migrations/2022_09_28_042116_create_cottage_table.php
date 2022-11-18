@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cottage', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->string('name', 45);
             $table->string('description', 250);

@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Reservation;
 use App\Models\Compra;
 use App\Models\Cottage;
 use app\Models\Booking;
 use App\Models\Detail;
+use App\Models\Guest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Transbank\Webpay\WebpayPlus;
 use Transbank\Webpay\WebpayPlus\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class TransbankController extends Controller
 {
@@ -52,13 +55,13 @@ class TransbankController extends Controller
         $transaction->status($request->token_ws);
         $estado=0;
         if($status->isApproved()){
-            //dd($status);
             $compra->status=2;
             $compra->update();
             $estado=1;
-           // $booking=Booking::max('id');
-           // $booking->status="Pago Aceptado";
-           //$booking->update();
+            $id=Reservation::max('id');
+            $booking=Reservation::where('id',$id)->first();
+            $booking->status="1";
+            $booking->update();
            //retorna la rutaaas
             return view('transbank.response' ,compact('estado'));
         }else{
@@ -76,14 +79,23 @@ class TransbankController extends Controller
         $detail->timestamps = false;
         $detail->save();
         $id=Detail::max('id');
-        // $booking=new Booking();
-        // $booking->ingress=$request->ingress;
-        // $booking->detail_id=$id;
-        // $booking->egress=$request->egress;
-        // $booking->user_id=0;
-        // $booking->guest_id=0;
-        // $booking->status="Pendiente Pago";
-        // $booking->save();
+        $guest=new Guest();
+        $guest->name=$request->name;
+        $guest->lasname=$request->lastname;
+        $booking=new Reservation();
+        $booking->ingress=$request->ingress;
+        $booking->detail_id=$id;
+        $booking->egress=$request->egress;
+        if(Auth::id()==null){
+            $booking->users_id=1;
+        }else{
+            $booking->users_id=Auth::id();
+        }
+        $booking->guest_id=Guest::max('id');
+        $booking->status="0";
+        $booking->city=$request->city;
+        $booking->cottage_id=$request->cottageId;
+        $booking->save();
         return $id;
     }
     public function showStatus(){

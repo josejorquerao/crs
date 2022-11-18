@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_service', function (Blueprint $table) {
+        Schema::create('guest', function (Blueprint $table) {
             $table->engine="InnoDb";
             $table->id();
-            $table->unsignedBigInteger('detail_id');
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('detail_id')->references('id')->on('detail')->onDelete('cascade');
-            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade');
+            $table->string('name');
+            $table->string('lastname');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_service');
+        Schema::dropIfExists('guest');
     }
 };

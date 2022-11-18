@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail', function (Blueprint $table) {
+            $table->engine="InnoDb";
             $table->id();
             $table->integer('total');
             $table->unsignedBigInteger('cottage_id')->nullable();

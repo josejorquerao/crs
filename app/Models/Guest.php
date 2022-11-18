@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Guest extends Model
 {
+    protected $table="guest";
     use HasFactory;
 }

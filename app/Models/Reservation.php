@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Booking
+ * Class Reservation
  *
  * @property $id
  * @property $ingress
@@ -25,9 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Reserve extends Model
+class Reservation extends Model
 {
-    
+    use HasFactory;
     static $rules = [
 		'ingress' => 'required',
 		'egress' => 'required',

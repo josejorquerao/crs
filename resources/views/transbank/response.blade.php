@@ -1,8 +1,10 @@
 
 @include('partials.head')
 @include('partials.header')
+@include('partials.welcome')
 <body>
-<div class="modal" id="myModal" tabindex="1">
+<div class="modal" id="myModal" tabindex="1" ass="modal fade" tabindex="-1" role="dialog" data-backdrop="static" 
+  data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,6 +34,7 @@
 
 <script>
   $( document ).ready(function() {
-    $('#myModal').modal('toggle')
+    $('#myModal').modal('toggle');
+    $('#myModal').modal({backdrop: 'static', keyboard: false});
 });
 </script>

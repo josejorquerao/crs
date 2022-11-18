@@ -11,6 +11,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 
 class RegisterController extends Controller
 {
@@ -57,6 +60,9 @@ class RegisterController extends Controller
             $user->password = Hash::make($request->get('password'));
             $user->save();
             $lastUserId = User::latest('id')->first();
+
+            $lastUserId->assignRole(Role::latest('id')->first());
+            
             $contact = new Contact();
             $contact->city = $request->get('city');
             $contact->user_id = $lastUserId->id;

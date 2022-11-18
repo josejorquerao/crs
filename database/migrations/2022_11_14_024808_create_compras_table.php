@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('compras', function (Blueprint $table) {
+            $table->engine="InnoDb";
             $table->id();
             $table->string('session_id');
             $table->float('total',9,2);

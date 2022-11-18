@@ -1,81 +1,88 @@
+@extends('dashboard')
+@section('contenido')
+<section class="section dashboard">
+    <div class="pagetitle">
+        <h1>Resumen</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">/ dashboard / Resumen</li>
+            </ol>
+        </nav>
+    </div>
 <div class="row">
-<div class="col-sm-4 center text-center">
+<div class="col-sm-4 center text-center" style="max-width:600px; margin:auto;">
 <div class="card-body">
  <div class="card recent-sales overflow-auto">
     <div class="card-body">
       <div class="col-lg-20">
-        <h4 class="tittle"> Graficos y Estadísticas</h4>
-
+        <h4 class="tittle"> Graficos por meses</h4>
         <canvas id="myChart" width="400" height="400"></canvas>
       </div>
     </div>
   </div>
 </div>
 </div>
-<div class="col-sm-4 center text-center" style="max-width:500px; margin:auto;">
+<div class="col-sm-4 center text-center" style="max-width:600px; margin:auto;">
 <div class="card recent-sales overflow-auto">
     <div class="card-body">
-        <h4 class="tittle"> Graficos y Estadísticas</h4>
-
+        <h4 class="tittle">Grafico por Ciudad</h4>
         <canvas id="ciudad" width="400" height="400"></canvas>
     </div>
   </div>
 </div>
-<div class="col-sm-4 center text-center" style="max-width:500px; margin:auto;">
+
+<div class="col-sm-4 center text-center" style="max-width:600px; margin:auto;">
 <div class="card recent-sales overflow-auto">
     <div class="card-body">
       <div class="col-lg-20">
-        <h4 class="tittle"> Graficos y Estadísticas</h4>
+        <h4 class="tittle"> Grafico por numero de reservas</h4>
 
         <canvas id="cabaña" width="400" height="400"></canvas>
       </div>
     </div>
-  </div>
-</div>
-</div>
-
-<div class="col-12" style="max-width:500px; margin:auto;">
-  <div class="card recent-sales overflow-auto">
-    <div class="card-body">
-      <div class="col-lg-20">
-        <h4 class="tittle"> Graficos y Estadísticas</h4>
-
-        <canvas id="myChart" width="400" height="400"></canvas>
-      </div>
     </div>
-  </div>
 </div>
+</div>
+</section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
-
 <script>
-   $(document).ready(function(){
     fillMonths();
     FillChartClients();
     FillChartHouse();
-        });
-
 
   function fillMonths(){
+    var month= <?php echo json_encode($month); ?>; 
+    console.log(month);
+    var arrayCalculo=[];
+    var arrayName=[];
+     for(item of month){
+    arrayName.push(item.mes.trim());
+     arrayCalculo.push(Number(item.cantidad).toFixed(1));
+     }
     const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
     ];
-
     const data = {
-    labels: months,
+    labels: arrayName,
     datasets: [{
-      label: 'My First dataset',
+      label: 'Arriendos según mes',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: arrayCalculo,
     }]
     };
 
@@ -92,14 +99,22 @@
    
   
   function FillChartHouse(){
-    const ctx = document.getElementById('cabaña').getContext('2d');
+    var cottage= <?php echo json_encode($countHouse); ?>; 
+    var arrayName=[];
+    var arrayCalculo=[];
+    console.log(cottage);
+     for(item of cottage){
+    arrayName.push(item.name.trim());
+     arrayCalculo.push(Number(item.cantidad).toFixed(1));
+     }
+    const ctx = document.getElementById('cabaña');
     const myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Solicitado', 'Despachado', 'No Despachado'],
+        labels: arrayName,
         datasets: [{
-            label: 'Solicitado',
-            data: [ 1,2,3],
+            label: 'Cabaña',
+            data: arrayCalculo,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -123,19 +138,21 @@
 });
 }
 function FillChartClients(){
-    const ctx = document.getElementById('viudad').getContext('2d');
-    var arrayName=['a','b'];
-    var arrayCalculo=[1,2];
-    for(item of clients){
-    arrayName.push(item.nom_clie.trim());
-    arrayCalculo.push(Number(item.calculo).toFixed(1));
-    }
+    const ctx = document.getElementById('ciudad');
+    var city= <?php echo json_encode($countcity); ?>;
+    console.log(city); 
+    var arrayName=[];
+    var arrayCalculo=[];
+     for(item of city){
+    arrayName.push(item.city.trim());
+     arrayCalculo.push(Number(item.cantidad).toFixed(1));
+     }
     const myChartr = new Chart(ctx , {
     type: 'bar',
     data: {
         labels: arrayName,
         datasets: [{
-            label: ['Porcentaje %'],
+            label: ['Ciudades Visitadas'],
             data:  arrayCalculo,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -156,9 +173,16 @@ function FillChartClients(){
             borderWidth: 1
         },]
     },
-    
+    options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
 });
 }
 </script>
-
-
+@endsection
