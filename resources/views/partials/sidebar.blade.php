@@ -7,7 +7,7 @@
       <a class="nav-link collapsed" href="{{ route('profile') }}"><i class="fa-solid fa-user"></i><span>Perfil</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('admin.index') }}"><i class="fa-solid fa-calendar-check"></i></i><span>Mis Reservas</span></a>
+      <a class="nav-link collapsed" href="{{ route('admin.index','auth()->user()') }}"><i class="fa-solid fa-calendar-check"></i></i><span>Mis Reservas</span></a>
     </li>
     </li>
     @endrole

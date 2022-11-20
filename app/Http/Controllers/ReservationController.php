@@ -8,6 +8,10 @@ use App\Models\Compra;
 use App\Models\Cottage;
 use App\Models\Detail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Auth\Recaller;
+use Illuminate\Support\Facades\Auth;
 /**
  * Class ReservationController
  * @package App\Http\Controllers
@@ -21,13 +25,13 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations=Reservation::paginate();
+        $reservations=Reservation::paginate('8');
         return view('reservation.index', compact('reservations'))
         ->with('i', (request()->input('page', 1) - 1) * $reservations->perPage());
     }
     public function clients()
     {
-        $reservations=Reservation::paginate();
+        $reservations=Reservation::where('users_id',Auth::id())->paginate('5');
         return view('admin.indexClient', compact('reservations'))
         ->with('i', (request()->input('page', 1) - 1) * $reservations->perPage());
     }

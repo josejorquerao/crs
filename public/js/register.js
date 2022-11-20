@@ -11,8 +11,7 @@ const verificarUser = async () => {
     $('#addUser').prop('disabled', true)
     let sw = true
 
-    let array = ['name', 'lastname', 'city', 'email', 'password', 'password-confirm']
-
+    let array = ['nameRegister', 'lastnameRegister', 'cityRegister', 'emailRegister', 'passwordRegister', 'password-confirm']
     var pre = array.map(async function (datos) {
         var dato = $('#' + datos)
         var datoValue = dato.val()
@@ -22,11 +21,11 @@ const verificarUser = async () => {
         } else {
             switch (datos) {
                 case 'password-confirm':
-                    var valpass = checkPass($('#password'), $('#password-confirm'))
+                    var valpass = checkPass($('#passwordRegister'), $('#password-confirm'))
                     if (valpass == false) { sw = false }
                     break
                 case 'email':
-                    var valEmail = await checkEmail($('#email'), $('#error-email'))
+                    var valEmail = await checkEmail($('#emailRegister'), $('#error-email'))
                     if (valEmail == false) { sw = false }
                     break
                 default:
@@ -49,7 +48,6 @@ const verificarUser = async () => {
 
 /* Verificar Contraseña */
 function checkPass(pass, passConfirm) {
-
     if (pass.val() == passConfirm.val()) {
         pass.css('border-color', '')
         passConfirm.css('border-color', '')
@@ -97,7 +95,7 @@ const agregarUser = async () => {
     let token = $("input[name=_token]").val()
     let form = $('#formRegister')
     let route = 'userStore'
-    await $.ajax({
+    $.ajax({
         type: 'post',
         headers: {
             'X-CSRF-TOKEN': token
@@ -114,14 +112,24 @@ const agregarUser = async () => {
                     confirmButtonText: 'OK'
                 }).then((result)=>{
                     if (result.isConfirmed){
-                        $(location).attr('href','http://localhost/crs/public/login')
+                        $(location).attr('href','http://127.0.0.1:8000/prelogin')
                     }
                 })
                 
             } else {
-                console.log('error');
+                Swal.fire({
+                    title:'Error',
+                    text:'ocurrio un problema al registrase',
+                    icon:'danger',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok'
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        $(location).attr('href','http://127.0.0.1:8000/')
+                    }
+                })
             }
         }
-    })
+    });
 
 }

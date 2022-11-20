@@ -44,38 +44,41 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($reservations as $reservation)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $reservation->ingress }}</td>
-											<td>{{ $reservation->egress }}</td>
-											<td>
-                                                @if ($reservation->status=='0')
-                                                    Pendiente
-                                                @endif
-                                                @if ($reservation->status=='1')
-                                                    Aceptado
-                                                @endif
-                                                @if ($reservation->status=='2')
-                                                    Cancelado
-                                                @endif
-                                            </td>
-											<td>{{ $reservation->cottage->name }}</td>
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        
+                                        <td>{{ $reservation->ingress }}</td>
+                                        <td>{{ $reservation->egress }}</td>
+                                        <td>
+                                            @if ($reservation->status=='0')
+                                                Pendiente
+                                            @endif
+                                            @if ($reservation->status=='1')
+                                                Aceptado
+                                            @endif
+                                            @if ($reservation->status=='2')
+                                                Cancelado
+                                            @endif
+                                        </td>
+                                        <td>{{ $reservation->cottage->name }}</td>
 
-                                            <td>
-                                                @if ($reservation->status=='2' )
-                                                    No Aplica
-                                                @else
-                                                <form action="{{ route('admin.cancelar',$reservation->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Cancelar Reserva</button>
-                                                </form>
-                                                @endif
-                                            </td>
-                                        </tr>
+                                        <td>
+                                            @if ($reservation->status=='2' )
+                                                No Aplica
+                                            @else
+                                            <form action="{{ route('admin.cancelar',$reservation->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Cancelar Reserva</button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if ($reservations->count()<=0)
+                                Sin Datos
+                                @endif
                         </div>
                     </div>
                 </div>

@@ -52,23 +52,31 @@ class RegisterController extends Controller
     }
     protected function userStore(Request $request)
     {
-        if ($request->ajax()) {
-            $user = new User();
-            $user->name = $request->get('name');
-            $user->lastname = $request->get('lastname');
-            $user->email = $request->get('email');
-            $user->password = Hash::make($request->get('password'));
-            $user->save();
-            $lastUserId = User::latest('id')->first();
-
-            $lastUserId->assignRole(Role::latest('id')->first());
-            
-            $contact = new Contact();
-            $contact->city = $request->get('city');
-            $contact->user_id = $lastUserId->id;
-            $contact->timestamps = false;
-            $contact->save();
-            return response()->json(['success' => 'true']);
+        try {
+            if ($request->ajax()) {
+                $user = new User();
+                $user->name = $request->get('nameRegister');
+                $user->lastname = $request->get('lastnameRegister');
+                $user->email = $request->get('emailRegister');
+                $user->password = Hash::make($request->get('passwordRegister'));
+                $user->save();
+                $lastUserId = User::latest('id')->first();
+                $role=Role::latest('id')->first();
+    
+                $lastUserId->assignRole($role);
+                
+                $contact = new Contact();
+                $contact->city = $request->get('cityRegister');
+                $contact->user_id = User::max('id');
+                $contact->email= $request->get('emailRegister');
+                $contact->guest_id=1;
+                $contact->id=Contact::max('id')+1;
+                $contact->timestamps = false;
+                $contact->save();
+                return response()->json(['success' => 'true']);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'false']);
         }
     }
     protected function create(array $data)

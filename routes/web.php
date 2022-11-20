@@ -27,8 +27,9 @@ Route::get('/', [IndexController::class, 'show'])->name('index');
 
 /* Autenticación de Usuario */
 Auth::routes();
+Route::get('/prelogin', function(){return view('auth.login');})->name('prelogin');
 Route::get('/validateEmail', [ProfileController::class, 'validateEmail']);
-Route::post('/userStore', [RegisterController::class, 'userStore']);
+Route::ANY('/userStore', [RegisterController::class, 'userStore'])->name('userStore');
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 /* RUTAS DEl HOME */

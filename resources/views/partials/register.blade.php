@@ -9,43 +9,43 @@
                 <form method="POST" id="formRegister" action="">
                     @csrf
                     <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
+                        <label for="nameRegister" class="col-md-4 col-form-label text-md-end">Nombre</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                            <input id="nameRegister" type="text" class="form-control" name="nameRegister" required autocomplete="name" autofocus>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">Apellidos</label>
+                        <label for="nameRegister" class="col-md-4 col-form-label text-md-end">Apellidos</label>
 
                         <div class="col-md-6">
-                            <input id="lastname" type="text" class="form-control" name="lastname" required autocomplete="name" autofocus>
+                            <input id="lastnameRegister" type="text" class="form-control" name="lastnameRegister" required autocomplete="name" autofocus>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="ciudad" class="col-md-4 col-form-label text-md-end">Ciudad</label>
+                        <label for="ciudadRegister" class="col-md-4 col-form-label text-md-end">Ciudad</label>
 
                         <div class="col-md-6">
-                            <input id="city" type="text" class="form-control" name="city" required autocomplete="name" autofocus>
+                            <input id="cityRegister" type="text" class="form-control" name="cityRegister" required autocomplete="name" autofocus>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">Email</label>
+                        <label for="emailRegister" class="col-md-4 col-form-label text-md-end">Email</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" required autocomplete="email">
+                            <input id="emailRegister" type="email" class="form-control" name="emailRegister" required autocomplete="email">
                             <label id="error-email"></label>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
+                        <label for="passwordRegister" class="col-md-4 col-form-label text-md-end">Contraseña</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                            <input id="passwordRegister" type="password" class="form-control" name="passwordRegister" required autocomplete="new-password">
                             <label id="error-password"></label>
                         </div>
 

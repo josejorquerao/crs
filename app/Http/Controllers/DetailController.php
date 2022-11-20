@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cottage;
 use App\Models\Service;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 class DetailController extends Controller
@@ -50,12 +51,14 @@ class DetailController extends Controller
     public function show(Request $request)
     {
         $precio=$request->cottagePrice;
+        $user=Auth::user();
+        $request->user=$user;
         $services = Service::all();
         $currentDate = Carbon::createFromFormat('Y-m-d', $request->ingress);
         $shippingDate = Carbon::createFromFormat('Y-m-d', $request->egress);
         $dias = $currentDate->diffInDays($shippingDate);
         $preciototal=$precio*$dias;
-        return view('detail', compact('request', 'services', 'dias','preciototal'));
+        return view('detail', compact('request', 'services', 'dias','preciototal','user'));
     }
 
     /**

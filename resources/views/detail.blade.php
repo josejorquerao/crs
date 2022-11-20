@@ -69,7 +69,7 @@
                 <input type="text" value="{{$request->phone}}" class="form-control" name="phone" id="phone" placeholder="Telefono ej.(+569xxxxxxxx)" required readonly>
               </div>
             </form>
-            <form method='POST' action="{{route('start_buy',$request)}}">
+            <form method='POST' action="{{route('start_buy',$request)}} " enctype="multipart/form-data">
           </div>
           <div class="card-footer text-muted">
           </div>
@@ -122,9 +122,15 @@
                 <div class="col-6"><span data-bind="">Total (CLP)</span></div>
                 <div class="col-6 text-right"><span>&nbsp;$</span><span id="totalSpan">{{$preciototal}}</span></div>
                 <input type="hidden" class="form-control" value="{{$preciototal}}" id="total" name='totalmonto'>
+                @if (auth()->user()==null)
+                    
+                @else
+                <input type="hidden" class="form-control" value="{{auth()->user()->id}}" id="user" name='user'>
+                @endif
               </div>
               
               <div class=" col-md-12 form-group mt-3">
+                @csrf
                 <button id="buttonPay" type="submit" class="btn btn-success btn-primary col-md-12"><strong><span>PAGAR $</span>
                 <span id="botonTotal" name="total">{{$preciototal}}</span></strong></button>
               </div>

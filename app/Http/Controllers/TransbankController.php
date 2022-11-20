@@ -79,19 +79,23 @@ class TransbankController extends Controller
         $detail->timestamps = false;
         $detail->save();
         $id=Detail::max('id');
-        $guest=new Guest();
-        $guest->name=$request->name;
-        $guest->lasname=$request->lastname;
         $booking=new Reservation();
         $booking->ingress=$request->ingress;
-        $booking->detail_id=$id;
         $booking->egress=$request->egress;
-        if(Auth::id()==null){
+        if($request->user==null){
             $booking->users_id=1;
+            $guest=new Guest();
+            $guest->name=$request->name;
+            $guest->lastname=$request->lastname;
+            $guest->save();
+            $booking->guest_id=Guest::max('id');
         }else{
-            $booking->users_id=Auth::id();
+            $booking->users_id=$request->user;
+            $booking->guest_id=1;
         }
-        $booking->guest_id=Guest::max('id');
+        $detail->save();
+        $id=Detail::max('id');
+        $booking->detail_id=$id;
         $booking->status="0";
         $booking->city=$request->city;
         $booking->cottage_id=$request->cottageId;

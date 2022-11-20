@@ -70,12 +70,18 @@
                                                 @endif
                                             </td>
 											<td>{{ $reservation->detail_id }}</td>
-											<td>{{ $reservation->user->name }}</td>
+											<td>
+                                                @if ($reservation->guest_id==1)
+                                                    {{ $reservation->user->name }}
+                                                @else
+                                                    No Aplica
+                                                @endif
+                                                </td>
 											<td>
                                                 @if ($reservation->guest_id==1)
                                                     No Aplica
                                                 @else
-                                                    {{$reservation->guest->name}}
+                                                    {{$reservation->guest->name}} {{$reservation->guest->lastname}} 
                                                 @endif
                                             
                                             </td>
@@ -94,6 +100,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if ($reservations->count()<=0)
+                            Sin Datos
+                            @endif
                         </div>
                     </div>
                 </div>
