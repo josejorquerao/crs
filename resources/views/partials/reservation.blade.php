@@ -26,7 +26,7 @@
 
             </div>
           </div>
-          <button id="boton" class="btn btn-success col-md-12" data-bs-toggle="modal" data-bs-target="#cottageBooking{{$cottage->id}}" onclick="SetDate({{$cottage->id}})"><strong>RESERVAR</strong></button>
+          <button id="boton" class="btn btn-success col-md-12" data-bs-toggle="modal" data-bs-target="#cottageBooking{{$cottage->id}}"><strong>RESERVAR</strong></button>
         </div>
       </div>
       <!-- Modal para Reservar Cabaña -->
@@ -63,13 +63,13 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <span class="form-label text-muted">¿Desde cuándo?</span>
-                        <input type="date" class="form-control" name="ingressReservation" id="ingressReservation" required min="{{$date}}">
+                        <input type="date" class="form-control" name="ingress" id="ingress" required min="{{$date}}">
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <span class="form-label text-muted">¿Hasta cuándo?</span>
-                        <input type="date" class="form-control" name="egressReservation" id="egressReservation" required min="{{$date}}">
+                        <input type="date" class="form-control" name="egress" id="egress" required min="{{$date}}">
                       </div>
                     </div>
                   </div>
@@ -131,18 +131,3 @@
   </div>
 </section><!-- Fin Seccion de Reserva -->
 <br>
-<script>
-function SetDate(id) {
-  console.log(id)
-  var date=<?php echo json_encode($reservation); ?>; 
-  var datefilter=date.filter(x=>x.cottage_id==119);
-  datefilter
-  .map((x, index) => {
-    $('·ingress').pickadate({
-  disable: [
-    { from: [x.ingress], to: [x.egress] }
-  ]
-})
-  })
-}
-</script>

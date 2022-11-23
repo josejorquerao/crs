@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cottage;
-use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -51,11 +49,8 @@ class IndexController extends Controller
     {
         $date=Carbon::now();
         $date= $date->format('Y-m-d');
-        $reservation=Reservation::select('cottage_id','ingress','egress')
-        ->where('status','=','1')
-        ->get();
         $cottages=Cottage::all();
-        return view('index', compact('cottages','date','reservation'));
+        return view('index', compact('cottages','date'));
     }
 
     /**
