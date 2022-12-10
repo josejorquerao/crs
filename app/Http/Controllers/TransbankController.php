@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TransbankController extends Controller
 {
+    protected $data;
+
     public function construct(){
         if(app()->environment('production')){
             WebpayPlus::configureForProduction(
@@ -62,8 +64,14 @@ class TransbankController extends Controller
             $booking=Reservation::where('id',$id)->first();
             $booking->status="1";
             $booking->update();
+            $cottage=Cottage::find($booking->cottage_id);
+            if($booking->users_id==1){
+                $user=$booking->guest;
+            }else{
+                $user=User::find($booking->users_id);
+            }
            //retorna la rutaaas
-            return view('transbank.response' ,compact('estado'));
+            return view('transbank.response' ,compact('estado','booking','compra','user','cottage'));
         }else{
             return view('transbank.response',compact('estado'));
         }
@@ -86,6 +94,7 @@ class TransbankController extends Controller
             $booking->users_id=1;
             $guest=new Guest();
             $guest->name=$request->name;
+            $guest->email=$request->email;
             $guest->lastname=$request->lastname;
             $guest->save();
             $booking->guest_id=Guest::max('id');

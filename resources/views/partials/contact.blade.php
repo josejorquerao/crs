@@ -40,7 +40,7 @@
       </div>
 
       <div class="col-lg-6">
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form border">
+        <form action="" id="formEmail" mame="formEmail" method="post" role="form" class="php-email-form border">
           <div class="row">
             <div class="col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Tu Nombre" required>
@@ -61,7 +61,7 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
-            <button id="boton" class="btn btn-success col-md-12">Enviar mensaje</button>
+            <button id="botonMensaje" class="btn btn-success col-md-12">Enviar mensaje</button>
           </div>
         </form>
       </div>
@@ -70,3 +70,51 @@
 
   </div>
 </section>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("j1RGa_jPjOqjgbWyC");
+   })();
+</script>
+<script>
+ document.getElementById('formEmail')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();  
+   const btn = document.getElementById('botonMensaje');   
+   btn.innerHTML =
+  '<span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span> Enviando mensaje ...';        
+   btn.disabled=true;
+
+   const serviceID = 'default_service';
+   const templateID = 'template_xz7ql1t';
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      Swal.fire({
+                    title:'Mensaje Enviado',
+                    text:'Estimado usuario tu mensaje a sido enviado Correctamente',
+                    icon:'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                }).then((result)=>{
+                  console.log(result)
+                  btn.innerHTML ='Enviar Mensaje';
+                  btn.disabled=false;
+                })
+    }, (err) => {
+      Swal.fire({
+                    title:'Error al enviar Mensaje',
+                    text:'Pronto Solucionaremos el error, trabajamos en ello.',
+                    icon:'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                }).then((result)=>{
+                  console.log(JSON.stringify(err.text))
+                  btn.innerHTML ='Enviar Mensaje';
+                  btn.disabled=false; 
+                })
+    }); 
+    this.reset()
+});
+</script>
