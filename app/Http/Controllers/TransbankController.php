@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TransbankController extends Controller
 {
-    protected $data;
-
+    //constructor para iniciar ambiente de trabajo 
     public function construct(){
         if(app()->environment('production')){
             WebpayPlus::configureForProduction(
@@ -27,13 +26,22 @@ class TransbankController extends Controller
             WebpayPlus::configureForTesting();
         }
     }
+    //comienza la solicitud a transbank
     public function start(Request $request){
         $compra=new Compra();
-        //se debe incluir despues de q se corriguen las tablas
+
+        //LLena los datos correspondiente a la base de datos 
        $id=self::setData($request);  
+       //fin de llenado a la base de datos
+
+       //llenar compra
         $compra->session_id=$id;
         $compra->total=$request->totalmonto;
         $compra->save();
+
+        //Comenzar tracsaccion de transbank para luego retorna la respuesta 
+        //en caso de fallar la transaccion y no completar el pago 
+        //dejara como pendiente la reservacion.
         $url=self::start_transaction($compra);
         return redirect($url);
     }
@@ -66,7 +74,11 @@ class TransbankController extends Controller
             $booking->update();
             $cottage=Cottage::find($booking->cottage_id);
             if($booking->users_id==1){
-                $user=$booking->guest;
+                if($booking->guest_id==1){    
+                $user=User::find($booking->users_id);
+                }else{
+                    $user=$booking->guest;
+                }
             }else{
                 $user=User::find($booking->users_id);
             }

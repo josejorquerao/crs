@@ -48,7 +48,9 @@
         if ({{ $estado }} == 1) {
             Swal.fire({
                 title: 'Pago Aceptado',
-                html: 'Estimado '+ reserva.guest.name +' la Cabaña a sido Reservada. <br> Monto Total :$ '+compra.total +'<br> Cabaña :'+cabaña.name+'<br>  Se envio un correo con la información correspondiente. ',
+                html: 'Estimado ' + user.name + ' la Cabaña a sido Reservada. <br> Monto Total :$ ' + compra
+                    .total + '<br> Cabaña :' + cabaña.name +
+                    '<br>  Se envio un correo con la información correspondiente. ',
                 icon: 'success',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK'
