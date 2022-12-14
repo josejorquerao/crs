@@ -47,10 +47,10 @@ class IndexController extends Controller
      */
     public function show()
     {
-        $date=Carbon::now();
-        $date= $date->format('Y-m-d');
+        $dates = [["11-04-2022", "11-08-2022"], ["11-11-2022", "11-14-2022"], ["11-21-2022", "12-02-2022"]];
+
         $cottages=Cottage::all();
-        return view('index', compact('cottages','date'));
+        return view('index', compact('cottages','dates'));
     }
 
     /**

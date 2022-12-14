@@ -311,7 +311,7 @@ h6 {
 }
 
 /**
-* NAVEGACION PARA MOVILES 
+* NAVEGACION PARA MOVILES
 */
 .mobile-nav-toggle {
   color: #fff;
@@ -1385,4 +1385,8 @@ RESUMEN
 .dashboard .customers-card .card-icon {
   color: #ff771d;
   background: #ffecdf;
+}
+
+.datepicker {
+  z-index: 1151;
 }
